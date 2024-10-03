@@ -1,4 +1,3 @@
-// middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 require("dotenv").config();
@@ -18,7 +17,7 @@ const protect = async (req, res, next) => {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
       // Find user by ID
-      req.user = await User.findById(decoded.id).select("-password");
+      req.user = await User.findById(decoded.id)
 
       next();
     } catch (error) {
